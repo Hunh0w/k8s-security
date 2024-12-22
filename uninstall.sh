@@ -19,6 +19,7 @@ helm uninstall kyverno kyverno/kyverno
 helm uninstall falco falcosecurity/falco
 
 kubectl delete ns kyverno
+kubectl delete ns falco
 
 kubectl delete -f registry.yaml
-kubectl delete ns falco
+
