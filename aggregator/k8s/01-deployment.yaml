@@ -1,3 +1,8 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aggregator
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -12,6 +17,7 @@ spec:
       labels:
         app: aggregator
     spec:
+      serviceAccountName: aggregator
       containers:
         - name: aggregator
           image: '10.43.0.50:5000/aggregator:latest'

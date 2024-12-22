@@ -1,0 +1,38 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-ingress-aggregator
+spec:
+  selector:
+    matchLabels:
+      app: aggregator
+  rules:
+    - from:
+        - source:
+            principals: ["*"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-aggregator-to-verbs
+spec:
+  selector:
+    matchLabels:
+      app: verbs
+  rules:
+    - from:
+        - source:
+            principals: ["cluster.local/ns/sentence/sa/aggregator"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-aggregator-to-nouns
+spec:
+  selector:
+    matchLabels:
+      app: nouns
+  rules:
+    - from:
+        - source:
+            principals: ["cluster.local/ns/sentence/sa/aggregator"]
