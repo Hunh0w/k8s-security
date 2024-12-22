@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nouns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nouns
+  template:
+    metadata:
+      labels:
+        app: nouns
+    spec:
+      containers:
+        - name: nouns
+          image: '10.43.0.50:5000/nouns:latest'
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "0.2"
+          securityContext:
+            privileged: false
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080

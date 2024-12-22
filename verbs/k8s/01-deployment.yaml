@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: verbs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: verbs
+  template:
+    metadata:
+      labels:
+        app: verbs
+    spec:
+      containers:
+        - name: verbs
+          image: '10.43.0.50:5000/verbs:latest'
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "0.2"
+          securityContext:
+            privileged: false
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080

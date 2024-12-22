@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aggregator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aggregator
+  template:
+    metadata:
+      labels:
+        app: aggregator
+    spec:
+      containers:
+        - name: aggregator
+          image: '10.43.0.50:5000/aggregator:latest'
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "0.2"
+          securityContext:
+            privileged: false
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+          - name: "NOUNS_HOST"
+            value: "10.43.0.30:8080"
+          - name: "VERBS_HOST"
+            value: "10.43.0.20:8080"

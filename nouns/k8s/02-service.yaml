@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nouns
+  labels:
+    app: nouns
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  clusterIP: 10.43.0.30
+  selector:
+    app: nouns
+  type: ClusterIP

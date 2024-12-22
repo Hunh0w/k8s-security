@@ -1,0 +1,17 @@
+garçon
+fille
+dame
+professeur
+bébé
+dauphin
+tortue
+chat
+aigle
+bureau
+table
+maison
+tablette
+caillou
+fleuve
+magasin
+ville
